@@ -8,8 +8,8 @@ import Sidebar from './Sidebar';
 import ImageCollection from './ImageCollection';
 import ImageDetail from './ImageDetail';
 
-const ImageCollectionWrapper = (props) => (
-  <ImageCollection images={props.images} />
+const ImageCollectionWrapper = (images) => (
+  <ImageCollection images={images} />
 )
 
 class App extends Component {
@@ -26,7 +26,10 @@ class App extends Component {
     // make API calls here
 
   fetch('http://circuslabs.net/~ryan.rodd/php/project16/api/?data=allimages')
-        .then(response => response.json())
+    .then(response => {
+      console.log('response', response);
+      return response.json();
+    })
     .then(data => {
       this.setState({
         images: data
